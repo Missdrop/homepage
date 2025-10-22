@@ -658,17 +658,21 @@ body {
     transform-origin: bottom center;
 }
 
-.skill-item:hover .skill-label,
-.skill-item:focus-within .skill-label {
-    opacity: 1;
-    transform: translate(-50%, -8px) translateY(0);
-    pointer-events: auto;
+/* On devices that support hover, show label on hover; always still allow focus/active to show */
+@media (hover: hover) and (pointer: fine) {
+    .skill-item:hover .skill-label {
+        opacity: 1;
+        transform: translate(-50%, -8px) translateY(0);
+        pointer-events: auto;
+    }
 }
 
-/* Improve touch support: show label on tap (focus) */
+/* On touch devices (no hover), show label only when focused/active (tap) */
+.skill-item:focus-within .skill-label,
 .skill-item:active .skill-label {
     opacity: 1;
     transform: translate(-50%, -8px) translateY(0);
+    pointer-events: auto;
 }
 
 /* Smaller icons for narrow screens */
