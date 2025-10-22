@@ -575,14 +575,15 @@ body {
 
 .projectItemRight {
     /* allow icons to be visible normally, but clip during hover animation */
-    overflow: hidden;
+    overflow: visible; /* show full icon by default to avoid accidental clipping on small screens */
     transition: width 0.4s ease;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 20%;
-    min-width: 44px;
+    min-width: 48px; /* ensure container can fit the 48px desktop icon */
     height: 100%;
+    padding-inline: 6px; /* small horizontal padding so icon doesn't touch edge */
 }
 
 .projectItemRight img {
@@ -604,7 +605,7 @@ body {
 .projectItemRight {
     flex: 0 0 20%;
     width: 20%;
-    min-width: 44px;
+    min-width: 48px;
 }
 /* Ensure project left/right are flexible and do not overflow on small screens */
 .projectItemLeft {
@@ -800,6 +801,8 @@ footer {
         width: 20%;
         align-items: center;
         justify-content: center;
+        min-width: 40px; /* ensure it can fit the 40px mobile icon */
+        padding-inline: 6px;
     }
 
     .a .projectItemRight img {
@@ -853,6 +856,11 @@ footer {
 .projectItem{
     padding: 10px;
 }
+
+    /* On small touch devices ensure project items don't clip their children by default */
+    .projectItem {
+        overflow: visible;
+    }
     .projectItemLeft p {
         font-size: 13px;
     }
