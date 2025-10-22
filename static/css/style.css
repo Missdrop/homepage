@@ -733,13 +733,18 @@ footer {
     }
 
     .a .projectItemRight {
-        display: none;
-
+        /* show right-side icon on mobile and size it down */
+        display: flex;
+        width: 20%;
+        align-items: center;
+        justify-content: center;
     }
 
     .a .projectItemRight img {
-        display: none;
-
+        display: block;
+        width: 32px;
+        height: 32px;
+        object-fit: contain;
     }
 
     .a .projectItemLeft {
