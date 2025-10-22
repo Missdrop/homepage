@@ -587,18 +587,67 @@ body {
 }
 
 .skill {
-    padding: 25px;
-    width: 100%;
+    display: inline-block; /* shrink-to-fit so box matches icons width */
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: var(--item_bg_color);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+    margin: 0 auto; /* center within parent */
+    max-width: 100%; /* avoid overflowing the page */
 }
 
-.skill img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+/* Skill list: responsive grid/flex that wraps */
+.skill-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    justify-content: flex-start; /* left-align icons when they wrap */
+    padding: 0;
+    margin: 0;
 }
 
-.skill #skillWap {
-    display: none;
+.skill-item {
+    width: 56px; /* base size for desktop */
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    background: transparent; /* use parent container background */
+    padding: 6px;
+    transition: transform 0.18s ease, filter 0.18s ease;
+}
+
+.skill-item img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    display: block;
+}
+
+.skill-item:hover {
+    transform: translateY(-3px) scale(1.04);
+    filter: brightness(1.08);
+}
+
+/* Smaller icons for narrow screens */
+@media (max-width: 800px) {
+    .skill-item {
+        width: 44px;
+        height: 44px;
+        padding: 6px;
+    }
+}
+
+@media (max-width: 420px) {
+    .skill-item {
+        width: 40px;
+        height: 40px;
+        padding: 5px;
+    }
 }
 
 footer {
