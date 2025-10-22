@@ -591,7 +591,9 @@ body {
     display: inline-block; /* shrink-to-fit so box matches icons width */
     padding: 10px 12px;
     border-radius: 10px;
-    background: var(--item_bg_color);
+    /* fully transparent background per user request */
+    background: transparent;
+    /* remove backdrop blur so background stays fully transparent */
     box-shadow: 0 6px 18px rgba(0,0,0,0.04);
     margin: 0; /* align left within parent */
     max-width: 100%; /* avoid overflowing the page */
@@ -610,8 +612,8 @@ body {
 }
 
 .skill-item {
-    width: 56px; /* base size for desktop */
-    height: 56px;
+    width: 64px; /* increased base size for desktop */
+    height: 64px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -634,19 +636,54 @@ body {
     filter: brightness(1.08);
 }
 
+/* Hover-only labels above each icon */
+.skill-item {
+    position: relative; /* for label positioning */
+}
+
+.skill-label {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -8px) translateY(6px);
+    bottom: 100%;
+    background: rgba(0,0,0,0.75);
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.12s ease, transform 0.12s ease;
+    transform-origin: bottom center;
+}
+
+.skill-item:hover .skill-label,
+.skill-item:focus-within .skill-label {
+    opacity: 1;
+    transform: translate(-50%, -8px) translateY(0);
+    pointer-events: auto;
+}
+
+/* Improve touch support: show label on tap (focus) */
+.skill-item:active .skill-label {
+    opacity: 1;
+    transform: translate(-50%, -8px) translateY(0);
+}
+
 /* Smaller icons for narrow screens */
 @media (max-width: 800px) {
     .skill-item {
-        width: 44px;
-        height: 44px;
+        width: 52px;
+        height: 52px;
         padding: 6px;
     }
 }
 
 @media (max-width: 420px) {
     .skill-item {
-        width: 40px;
-        height: 40px;
+        width: 44px;
+        height: 44px;
         padding: 5px;
     }
 }
