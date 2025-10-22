@@ -117,6 +117,22 @@ document.addEventListener('DOMContentLoaded', function () {
     changeTheme(themeState);
 
     //pop('./static/img/tz.jpg')
+    // --- Theme-aware icon fallback: mark items that have a light icon so CSS can use class selectors
+    (function markSkillItemsWithLightVariant(){
+        try {
+            var skillItems = document.querySelectorAll('.skill-item');
+            skillItems.forEach(function(item){
+                if (item.querySelector('img.icon-light')) {
+                    item.classList.add('has-light');
+                } else {
+                    item.classList.add('no-light');
+                }
+            });
+        } catch (e) {
+            // noop - defensive
+            console.error('markSkillItemsWithLightVariant error', e);
+        }
+    })();
 });
 
 

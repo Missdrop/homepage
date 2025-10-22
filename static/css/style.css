@@ -631,6 +631,24 @@ body {
     display: block;
 }
 
+/* Theme-aware icon variants: default to light, switch to dark when page uses data-theme="Dark" */
+.skill-item img.icon-light { display: inline-block; }
+.skill-item img.icon-dark { display: none; }
+.skill-item img.icon-single { display: inline-block; }
+
+/* If browser supports :has we can detect presence of .icon-light and prefer it; otherwise JS will add has-light/no-light classes */
+:where(.skill-item:has(> img.icon-light)) img.icon-dark { display: none; }
+:where(.skill-item:has(> img.icon-light)) img.icon-light { display: inline-block; }
+
+/* Fallback via classes added by JS */
+.skill-item.has-light img.icon-dark { display: none; }
+.skill-item.has-light img.icon-light { display: inline-block; }
+.skill-item.no-light img.icon-dark { display: inline-block; }
+.skill-item.no-light img.icon-light { display: none; }
+
+html[data-theme="Dark"] .skill-item img.icon-light { display: none; }
+html[data-theme="Dark"] .skill-item img.icon-dark { display: inline-block; }
+
 .skill-item:hover {
     transform: translateY(-3px) scale(1.04);
     filter: brightness(1.08);
