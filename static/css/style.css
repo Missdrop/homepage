@@ -537,10 +537,13 @@ body {
 
 .projectItem:hover .projectItemRight {
     width: 0%;
+    min-width: 0; /* allow hover to shrink the right area */
+    overflow: hidden; /* clip image only during hover */
 }
 
 .projectItem:hover .projectItemRight img {
-    transform: rotate(40deg);
+    transform: translateX(30px) rotate(40deg);
+    opacity: 0;
 }
 
 .projectItem:hover h1 {
@@ -571,20 +574,61 @@ body {
 
 
 .projectItemRight {
+    /* allow icons to be visible normally, but clip during hover animation */
     overflow: hidden;
     transition: width 0.4s ease;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 20%;
+    min-width: 44px;
     height: 100%;
 }
 
 .projectItemRight img {
+    display: block;
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+}
 
-    height: 39px;
-    width: 39px;
+.projectItemRight img {
+    transition: transform 0.35s ease, opacity 0.25s ease;
+}
 
+/* Ensure project left/right are flexible and do not overflow on small screens */
+.projectItemLeft {
+    flex: 1 1 auto;
+    width: auto;
+}
+.projectItemRight {
+    flex: 0 0 20%;
+    width: 20%;
+    min-width: 44px;
+}
+/* Ensure project left/right are flexible and do not overflow on small screens */
+.projectItemLeft {
+    flex: 1 1 auto;
+    width: auto;
+}
+.projectItemRight {
+    flex: 0 0 20%;
+    width: 20%;
+}
+
+/* Removed forced override for .logo img/.index-logo img to preserve original inline positioning */
+
+/* Prevent flex children from forcing overflow on small screens */
+.projectList {
+    gap: 10px;
+}
+.projectItem {
+    flex: 0 0 calc(25% - 15px);
+    min-width: 0; /* allow item to shrink below its content width */
+    overflow: visible;
+}
+.projectItemLeft {
+    min-width: 0; /* allow text to wrap and not push the icon out */
 }
 
 .skill {
@@ -760,8 +804,8 @@ footer {
 
     .a .projectItemRight img {
         display: block;
-        width: 32px;
-        height: 32px;
+        width: 40px;
+        height: 40px;
         object-fit: contain;
     }
 
