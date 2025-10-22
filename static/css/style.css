@@ -330,6 +330,7 @@ body {
 
 .gradientText {
 
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-size: 200%;
@@ -592,7 +593,7 @@ body {
     border-radius: 10px;
     background: var(--item_bg_color);
     box-shadow: 0 6px 18px rgba(0,0,0,0.04);
-    margin: 0 auto; /* center within parent */
+    margin: 0; /* align left within parent */
     max-width: 100%; /* avoid overflowing the page */
 }
 
@@ -850,6 +851,7 @@ footer {
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
+    user-select: none;
 }
 
 .onoffswitch-checkbox {
