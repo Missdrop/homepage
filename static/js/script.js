@@ -59,7 +59,6 @@ tc_main[0].addEventListener('click', function (event) {
 });
 
 
-
 function setCookie(name, value, days) {
     var expires = "";
     if (days) {
@@ -87,33 +86,11 @@ function getCookie(name) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 document.addEventListener('DOMContentLoaded', function () {
-
-
-
-
-
 
     var html = document.querySelector('html');
     var themeState = getCookie("themeState") || "Light";
     var tanChiShe = document.getElementById("tanChiShe");
-
-
-
-
-
 
     function changeTheme(theme) {
         tanChiShe.src = "./static/svg/snake-" + theme + ".svg";
@@ -121,12 +98,6 @@ document.addEventListener('DOMContentLoaded', function () {
         setCookie("themeState", theme, 365);
         themeState = theme;
     }
-
-
-
-
-
-
 
     var Checkbox = document.getElementById('myonoffswitch')
     Checkbox.addEventListener('change', function () {
@@ -139,86 +110,18 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-
-
     if (themeState == "Dark") {
         Checkbox.checked = false;
     }
 
     changeTheme(themeState);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   
-
-    var fpsElement = document.createElement('div');
-    fpsElement.id = 'fps';
-    fpsElement.style.zIndex = '10000';
-    fpsElement.style.position = 'fixed';
-    fpsElement.style.left = '0';
-    document.body.insertBefore(fpsElement, document.body.firstChild);
-
-    var showFPS = (function () {
-        var requestAnimationFrame = window.requestAnimationFrame ||
-            window.webkitRequestAnimationFrame ||
-            window.mozRequestAnimationFrame ||
-            window.oRequestAnimationFrame ||
-            window.msRequestAnimationFrame ||
-            function (callback) {
-                window.setTimeout(callback, 1000 / 60);
-            };
-
-        var fps = 0,
-            last = Date.now(),
-            offset, step, appendFps;
-
-        step = function () {
-            offset = Date.now() - last;
-            fps += 1;
-
-            if (offset >= 1000) {
-                last += offset;
-                appendFps(fps);
-                fps = 0;
-            }
-
-            requestAnimationFrame(step);
-        };
-
-        appendFps = function (fpsValue) {
-            fpsElement.textContent = 'FPS: ' + fpsValue;
-        };
-
-        step();
-    })();
-    
-    
-    
     //pop('./static/img/tz.jpg')
-    
-    
-    
 });
 
 
-
-
 var pageLoading = document.querySelector("#zyyo-loading");
-window.addEventListener('load', function() {
+window.addEventListener('load', function () {
     setTimeout(function () {
         pageLoading.style.opacity = '0';
     }, 100);
